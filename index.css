@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* FactoryFlow palette - navy / off-white / teal */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 217 68% 11%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 217 68% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 175 84% 32%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --warning: 32 95% 44%;
+    --warning-foreground: 0 0% 100%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 175 84% 32%;
+    --radius: 0.5rem;
+
+    --chart-1: 175 84% 32%;
+    --chart-2: 217 68% 11%;
+    --chart-3: 32 95% 44%;
+    --chart-4: 0 72% 51%;
+    --chart-5: 215 16% 47%;
+
+    --font-display: Cambria, Georgia, "Times New Roman", serif;
+    --font-heading: Cambria, Georgia, "Times New Roman", serif;
+    --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+    --sidebar-background: 217 68% 11%;
+    --sidebar-foreground: 210 40% 96%;
+    --sidebar-primary: 175 84% 32%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 40% 18%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 217 40% 20%;
+    --sidebar-ring: 175 84% 32%;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.2);
+  }
+}
+
+@layer components {
+  .ff-label {
+    @apply text-[11px] font-semibold uppercase tracking-[0.05em] text-muted-foreground;
+  }
+
+  .ff-num {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+  }
+
+  .ff-panel {
+    @apply rounded-lg border border-border bg-card shadow-[0_1px_3px_rgba(15,23,42,0.08)];
+  }
+
+  .ff-input {
+    @apply h-10 w-full rounded-md border border-input bg-card px-3 text-sm text-foreground placeholder:text-muted-foreground focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25;
+  }
+
+  .ff-fade-in {
+  animation: ff-fade 0.28s ease-out both;
+  }
+}
+
+@keyframes ff-fade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ff-fade-in {
+    animation: none;
+  }
+}
+
+/* thin, quiet scrollbars */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(215 16% 80%) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: hsl(215 16% 82%);
+  border-radius: 8px;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+  /* Print only the document sheet, whatever page it sits on. */
+  body * {
+    visibility: hidden;
+  }
+  .print-sheet,
+  .print-sheet * {
+    visibility: visible;
+  }
+  .print-sheet {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 0 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .print-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+  }
+  @page {
+    margin: 14mm;
+  }
+}
+
+.print-only {
+  display: none;
+}
+    
+      
